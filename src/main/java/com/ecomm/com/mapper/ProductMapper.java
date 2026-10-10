@@ -15,6 +15,7 @@ public class ProductMapper  {
                 .name(entity.getName())
                 .brand(entity.getBrand())
                 .price(entity.getPrice())
+                .color(entity.getColor())
                 .build();
     }
 
