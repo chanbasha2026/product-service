@@ -9,6 +9,7 @@ public class ApiConstants {
     public static final String PRODUCT_EXIST = "Product Found";
     public static final String PRODUCT_NOT_EXIST = "Product Not Found";
     public static final String PRODUCT_DELETED="Product Deleted Successfully";
+    public static final String PRODUCT_UPDATED = "Product Updated Successfully";
 
 
 }

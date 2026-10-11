@@ -8,6 +8,7 @@ public class ErrorConstants {
     public static final String PRODUCT_COLOR_ERROR = "Product Color Mandatory";
     public static final String PRODUCT_BRAND_ERROR = "Product Brand Mandatory";
     public static final String PRODUCT_PRICE_ERROR = "Product Price Mandatory";
+    public static final String PRODUCT_NOT_FOUND="Product Not Found";
 
 
 }

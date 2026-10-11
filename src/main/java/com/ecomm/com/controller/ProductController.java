@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("v1/products")
 public class ProductController {
     @Autowired
     private ProductService pService;
@@ -46,11 +47,16 @@ public class ProductController {
     @DeleteMapping("/deleteById/{id}")
     public ResponseEntity<ApiResponse<String>> deleteProductById(@PathVariable Long id){
          pService.deleteProductById(id);
-        return ResponseUtil.success(ApiConstants.PRODUCT_DELETED,ApiConstants.PRODUCT_EXIST,HttpStatus.OK);
+        return ResponseUtil.success(ApiConstants.PRODUCT_DELETED,ApiConstants.PRODUCT_NOT_EXIST+" "+id,HttpStatus.OK);
     }
     @DeleteMapping("/delete")
     public ResponseEntity<ApiResponse<String>> deleteAllProducts(){
         pService.deleteAllProduct();
-        return ResponseUtil.success(ApiConstants.PRODUCT_DELETED,ApiConstants.PRODUCT_EXIST,HttpStatus.OK);
+        return ResponseUtil.success(ApiConstants.PRODUCT_DELETED,ApiConstants.PRODUCT_NOT_EXIST,HttpStatus.OK);
+    }
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ApiResponse<ProductRes>> updateProduct(@Valid @RequestBody ProductDto dto,@PathVariable Long id){
+        ProductRes productRes = pService.updateProduct(dto, id);
+        return ResponseUtil.success(productRes,ApiConstants.PRODUCT_UPDATED,HttpStatus.OK);
     }
 }
